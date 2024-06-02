@@ -58,7 +58,9 @@ class Dot:
         x = int(size * self.pos.x)
         y = int(size * self.pos.y)
         radius = int(size * RADIUS)
-        canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill=self.color)
+        if self.color == GREEN:
+            radius += 2
+        canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill=self.color, outline='black')
 
     def check_wall_collision(self, new_pos):
         for wall in WALLS:

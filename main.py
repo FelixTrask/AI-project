@@ -17,8 +17,9 @@ class App(tk.Tk):
         self.population.update()
         self.population.draw(self.canvas)
         if not self.population.alive():
+            print(f"Running Generation {self.epoch}...")
             self.population = self.population.natural_selection()
-            print(f"{self.epoch} finished")
+            print(f"Generation {self.epoch} finished.")
             self.epoch += 1
         self.after(10, self.update_canvas)
 

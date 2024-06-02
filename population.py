@@ -17,8 +17,8 @@ class Population:
         size = min(canvas.winfo_width(), canvas.winfo_height())
         goal_x = int(size * GOAL.x)
         goal_y = int(size * GOAL.y)
-        radius = int(size * RADIUS)
-        canvas.create_oval(goal_x - radius, goal_y - radius, goal_x + radius, goal_y + radius, fill='blue')
+        radius = int(size * RADIUS) + 2
+        canvas.create_oval(goal_x - radius, goal_y - radius, goal_x + radius, goal_y + radius, fill='blue', outline='black')
         for wall in WALLS:
             start_x = int(size * wall[0].x)
             start_y = int(size * wall[0].y)
