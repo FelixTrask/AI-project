@@ -1,5 +1,5 @@
 from dot import Dot
-from constants import POPULATION_SIZE, GOAL, RADIUS
+from constants import POPULATION_SIZE, GOAL, RADIUS, WALLS, WALL_COLOR
 import random
 
 class Population:
@@ -18,6 +18,12 @@ class Population:
         goal_y = int(size * GOAL.y)
         radius = int(size * RADIUS)
         canvas.create_oval(goal_x - radius, goal_y - radius, goal_x + radius, goal_y + radius, fill='blue')
+        for wall in WALLS:
+            start_x = int(size * wall[0].x)
+            start_y = int(size * wall[0].y)
+            end_x = int(size * wall[1].x)
+            end_y = int(size * wall[1].y)
+            canvas.create_line(start_x, start_y, end_x, end_y, fill=WALL_COLOR, width=2)
 
     def update(self):
         if self.active:
