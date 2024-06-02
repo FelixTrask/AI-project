@@ -1,5 +1,5 @@
 from vpoint import VPoint
-from constants import VELOCITY, MUTATION_RATE, RADIUS, GOAL, MAX_MOVES, WALLS
+from constants import VELOCITY, MUTATION_RATE, RADIUS, GOAL, MAX_MOVES, WALLS, GREEN, RED
 import random
 import math
 
@@ -9,21 +9,25 @@ class Dot:
         self.pos = VPoint(0.5, 0.5)
         self.status = 'ALIVE'
         self.moves = [VELOCITY * VPoint.random() for _ in range(MAX_MOVES)]
+        self.color = RED
 
     def mutate(self):
-        # Mutate the moves of the dot
         mut = Dot()
         mut.moves = [move + VELOCITY * MUTATION_RATE * VPoint.random() for move in self.moves]
         return mut
-    
-    # Fitness function
+
     def fitness(self):
-        # If the dot wins, it gets a bonus based on how many moves it took to reach the goal
-        # If the dot loses, it gets a penalty based on how far it is from the goal
+        distance_to_goal = self.pos.dist(GOAL)
         if self.win():
-            return 1 + (1.0 / MAX_MOVES) * (MAX_MOVES - self.curMove)
-        dist = self.pos.dist(GOAL)
-        return 1.0 / (dist * dist)
+            # Winning dots get a high fitness based on moves taken to reach the goal
+            return 10.0 + (1.0 / MAX_MOVES) * (MAX_MOVES - self.curMove)
+        elif self.alive():
+            # Dots that are alive get a fitness based on distance to goal
+            return 1.0 / distance_to_goal
+        else:
+            # Dots that are dead get a fitness based on distance to goal
+            # with a small penalty
+            return 1.0 / (distance_to_goal + 0.1)
 
     def alive(self):
         return self.status == 'ALIVE'
@@ -54,7 +58,7 @@ class Dot:
         x = int(size * self.pos.x)
         y = int(size * self.pos.y)
         radius = int(size * RADIUS)
-        canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill='red')
+        canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill=self.color)
 
     def check_wall_collision(self, new_pos):
         for wall in WALLS:

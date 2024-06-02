@@ -4,9 +4,9 @@ from vpoint import VPoint
 # Constants
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 400
-POPULATION_SIZE = 500
-MAX_MOVES = 150
-VELOCITY = 0.025
+POPULATION_SIZE = 1000
+MAX_MOVES = 200
+VELOCITY = 0.02
 MUTATION_RATE = 0.1
 RADIUS = 0.01
 
@@ -31,8 +31,12 @@ DOT_COLORS = {
 
 # Walls (defined as a list of tuples with start and end points)
 WALLS = [
+    (VPoint(0, 0), VPoint(1, 0)),
+    (VPoint(1, 0), VPoint(1, 1)),
+    (VPoint(1, 1), VPoint(0, 1)),
+    (VPoint(0, 1), VPoint(0, 0)),
+    
     (VPoint(0.3, 0.3), VPoint(0.7, 0.3)),
-    (VPoint(0.7, 0.3), VPoint(0.7, 0.7)),
-    (VPoint(0.7, 0.7), VPoint(0.3, 0.7)),
+    (VPoint(0.7, 0.3), VPoint(0.3, 0)),
     # (VPoint(0.3, 0.7), VPoint(0.3, 0.3))
 ]
