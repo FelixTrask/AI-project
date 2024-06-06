@@ -18,6 +18,7 @@ class Dot:
 
     def fitness(self):
         distance_to_goal = self.pos.dist(GOAL)
+        #square_distance = distance_to_goal ** 2
         if self.win():
             # Winning dots get a high fitness based on moves taken to reach the goal
             return 10.0 + (1.0 / MAX_MOVES) * (MAX_MOVES - self.curMove)
@@ -27,7 +28,7 @@ class Dot:
         else:
             # Dots that are dead get a fitness based on distance to goal
             # with a small penalty
-            return 1.0 / (distance_to_goal + 0.1)
+            return 0.5 / (distance_to_goal)
 
     def alive(self):
         return self.status == 'ALIVE'

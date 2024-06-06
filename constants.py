@@ -4,9 +4,9 @@ from vpoint import VPoint
 # Constants
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 400
-POPULATION_SIZE = 1000
-MAX_MOVES = 200
-VELOCITY = 0.02
+POPULATION_SIZE = 1500
+MAX_MOVES = 100
+VELOCITY = 0.05
 MUTATION_RATE = 0.1
 RADIUS = 0.01
 
@@ -38,5 +38,6 @@ WALLS = [
     
     (VPoint(0.3, 0.3), VPoint(0.7, 0.3)),
     (VPoint(0.7, 0.3), VPoint(0.3, 0)),
+    (VPoint(1, 0.7), VPoint(0.7, 0)),
     # (VPoint(0.3, 0.7), VPoint(0.3, 0.3))
 ]
