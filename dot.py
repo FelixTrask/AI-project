@@ -50,7 +50,7 @@ class Dot:
                 elif self.pos.dist(GOAL) < RADIUS:
                     self.status = 'WIN'
             else:
-                self.status = 'LOSE'
+                self.status = 'DEAD'
         else:
             self.status = 'LOSE'
 
